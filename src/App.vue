@@ -12,6 +12,21 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  methods: {
+    handle: function () {
+      this.$http.post(this.$api.Index.index, {
+        q: "",
+        limit: 200,
+        facetsDistribution: ["category", "year"],
+        attributesToHighlight: ["*"]
+      }, true).then((result) => {
+        console.log(result)
+      })
+    }
+  },
+  mounted() {
+    this.handle()
   }
 }
 </script>
